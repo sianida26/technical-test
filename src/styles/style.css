@@ -72,16 +72,20 @@ button {
     top: 0.15rem;
 }
 
+.pl-1{
+    padding-left: 0.33rem;
+}
+
+.pl-2{
+    padding-left: 0.5rem;
+}
+
 .pl-3{
     padding-left: 1rem !important;
 }
 
 .pl-7{
     padding-left: 2.5rem !important;
-}
-
-.pl-md-6{
-    
 }
 
 .profile-picture-wrapper{
@@ -99,7 +103,7 @@ button {
     position: fixed;
     top: 0;
     left: 0;
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     background-color: rgb(2, 127, 112);
@@ -151,6 +155,10 @@ button {
     .text-lg-xl {
         font-size: 1.25rem; /* 20px */
         line-height: 1.75rem; /* 28px */
+    }
+
+    .side-panel {
+        display: flex;
     }
 
     .side-panel:hover + .sidebar {

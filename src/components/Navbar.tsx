@@ -93,13 +93,13 @@ export default function Navbar() {
             {/* sidebar */}
             <div className="mr-auto sidebar d-flex d-lg-none flex-column pr-2 py-4 pl-lg-1 text-white font-semibold gap-3" onClick={(e) => e.stopPropagation()}>
                 {/* Language control */}
-                <button className="d-flex d-lg-none align-items-center gap-2 text-white font-semibold" onClick={ openLanguageModal }>
+                <button className="d-flex d-lg-none align-items-center gap-2 text-white font-semibold pl-3" onClick={ openLanguageModal }>
                     <img src={ usFlag } alt="Flag of United States of America" width={25} height={25} style={{ border: "2px solid white", borderRadius: "9999px"}} />
                     English (US)
                 </button>
 
                 {/* Currency control */}
-                <div className="d-flex align-items-center d-lg-none">
+                <div className="d-flex align-items-center d-lg-none pl-3">
                     IDR Indonesian Rupiah
                 </div>
 
@@ -134,7 +134,7 @@ export default function Navbar() {
 	return (
 		<div className="shadow">
 			{/* Always show sidebar when screen is lg or larger */}
-			<BsNavbar bg="light" onToggle={() => setShowSidebar(!showSidebar)}>
+			<BsNavbar bg="light" expand="lg" onToggle={() => setShowSidebar(!showSidebar)}>
 				<Container>
 					{/* left side */}
 					<div>
