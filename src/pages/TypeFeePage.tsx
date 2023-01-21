@@ -2,6 +2,8 @@ import React from 'react'
 
 export default function TypeFeePage() {
   return (
-    <div>TypeFeePage</div>
+    <main>
+        <h2>Fee Type</h2>
+    </main>
   )
 }
