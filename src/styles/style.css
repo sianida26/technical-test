@@ -80,6 +80,10 @@ button {
     padding-left: 2.5rem !important;
 }
 
+.pl-md-6{
+    
+}
+
 .profile-picture-wrapper{
     border-radius: 999px;
     border: 1px solid #DADADA;
@@ -88,6 +92,19 @@ button {
 
 .text-white{
     color: #FFF !important;
+}
+
+.side-panel{
+    height:100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(2, 127, 112);
+    padding: 3.2rem 0.5rem;
+    z-index: 31;
 }
 
 .sidebar{
@@ -102,4 +119,45 @@ button {
 .text-xs {
     font-size: 0.75rem; /* 12px */
     line-height: 1rem; /* 16px */
+}
+
+.text-xl {
+    font-size: 1.25rem; /* 20px */
+    line-height: 1.75rem; /* 28px */
+}
+
+/* lg breakpoint */
+@media (min-width: 992px) {
+    .pl-lg-7 {
+        padding-left: 2.1rem;
+    }
+
+    .pl-lg-0 {
+        padding-left: 0 !important;
+    }
+
+    .pl-lg-1 {
+        padding-left: 0.5 !important;
+    }
+
+    .pr-lg-2 {
+        padding-right: 0.75rem;
+    }
+
+    .pl-lg-2 {
+        padding-left: 0.75rem;
+    }
+
+    .text-lg-xl {
+        font-size: 1.25rem; /* 20px */
+        line-height: 1.75rem; /* 28px */
+    }
+
+    .side-panel:hover + .sidebar {
+        display: flex !important;
+    }
+
+    .sidebar:hover {
+        display: flex !important;
+    }
 }

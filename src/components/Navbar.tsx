@@ -83,26 +83,40 @@ export default function Navbar() {
 		<BsNavbar.Collapse id="sidebar-nav" in={showSidebar}>
             {/* sidebar backdrop */}
 			<div className="navbar-overlay d-lg-none" onClick={() => setShowSidebar(false)} />
-            <div className="mr-auto sidebar d-flex flex-column px-2 py-4 text-white font-semibold gap-3" onClick={(e) => e.stopPropagation()}>
+
+            {/* side panel */}
+            <div className="side-panel text-xl">
+                <i className="bi bi-house-door text-white" />
+                <i className="bi bi-briefcase-fill text-white px-2 py-1" style={{ marginTop: "1rem", backgroundColor: '#FDC300' }} />
+            </div>
+
+            {/* sidebar */}
+            <div className="mr-auto sidebar d-flex d-lg-none flex-column pr-2 py-4 pl-lg-1 text-white font-semibold gap-3" onClick={(e) => e.stopPropagation()}>
                 {/* Language control */}
-                <button className="d-flex align-items-center gap-2 text-white font-semibold" onClick={ openLanguageModal }>
+                <button className="d-flex d-lg-none align-items-center gap-2 text-white font-semibold" onClick={ openLanguageModal }>
                     <img src={ usFlag } alt="Flag of United States of America" width={25} height={25} style={{ border: "2px solid white", borderRadius: "9999px"}} />
                     English (US)
                 </button>
 
                 {/* Currency control */}
-                <div className="d-flex align-items-center">
+                <div className="d-flex align-items-center d-lg-none">
                     IDR Indonesian Rupiah
+                </div>
+
+                {/* Dasboard */}
+                <div className="d-none align-items-center d-lg-flex gap-2 pl-3" style={{ marginTop: "1.7rem" }}>
+                    <i className="bi bi-house-door text-white text-xl" />
+                    Dashboard
                 </div>
 
                 {/* Master Data Management */}
                 <div className="d-flex flex-column">
                     <div className="d-flex align-items-center pl-3 pr-1 py-1" style={{ backgroundColor: '#FDC300' }}>
-                        <i className="bi bi-briefcase-fill" />
-                        <span className="px-2">Master Data Management</span>
+                        <i className="bi bi-briefcase-fill text-lg-xl" />
+                        <span className="pl-2 pr-2 pl-lg-2 flex-lg-grow">Master Data Management</span>
                         <i className="bi bi-chevron-right" />
                     </div>
-                    <div className="d-flex flex-column pl-7 font-normal gap-2 mt-2">
+                    <div className="d-flex flex-column pl-7 pr-lg-2 font-normal gap-2 mt-2">
                         {
                             ['Standard Mark-Up', 'Standard Service Fee', 'Fee Type', 'Frequent Traveler Program', 'Standard Ancillary Fee', 'Rating Type', 'Setup Flight Commision', 'Special Dates', 'Corporate Rating']
                             .map((item, i) => (
@@ -120,7 +134,7 @@ export default function Navbar() {
 	return (
 		<div className="shadow">
 			{/* Always show sidebar when screen is lg or larger */}
-			<BsNavbar bg="light" expand="lg" onToggle={() => setShowSidebar(!showSidebar)}>
+			<BsNavbar bg="light" onToggle={() => setShowSidebar(!showSidebar)}>
 				<Container>
 					{/* left side */}
 					<div>
