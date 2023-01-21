@@ -11,6 +11,57 @@ button {
     align-self: flex-start;
 }
 
+.border-none {
+    border-width: 0 !important;
+}
+
+.border-none:focus{
+    outline: none !important;
+}
+
+.flag-round {
+    border-radius: 9999px;
+    object-fit: cover;
+}
+
+.font-normal{
+    font-weight: 400 !important;
+}
+
+.font-semibold{
+    font-weight: 600 !important;
+}
+
+.gap-2{
+    gap: 0.67rem !important;
+}
+
+.gap-3{
+    gap: 1rem !important;
+}
+
+.justify-self-end{
+    justify-self: end !important;
+}
+
+.lang-active{
+    border: 3px solid #FFF;
+}
+
+.lang-inactive{
+    border: 3px solid #027F71;
+}
+
+.navbar-overlay{
+    position: fixed;
+    top:0;
+    right:0;
+    height: 100vh;
+    width: 100vh;
+    z-index: 30;
+    background-color: rgba(0,0,0,0.75);
+}
+
 .notification-bubble{
     position: absolute;
     border-radius: 90px;
@@ -21,10 +72,30 @@ button {
     top: 0.15rem;
 }
 
+.pl-3{
+    padding-left: 1rem !important;
+}
+
+.pl-7{
+    padding-left: 2.5rem !important;
+}
+
 .profile-picture-wrapper{
     border-radius: 999px;
     border: 1px solid #DADADA;
     padding: 3px;
+}
+
+.text-white{
+    color: #FFF !important;
+}
+
+.sidebar{
+    position: fixed;
+    height: 100%;
+    left:0;
+    top:0;
+    background-color: rgba(2, 127, 112, 0.85);
 }
 
 .text-xs {
