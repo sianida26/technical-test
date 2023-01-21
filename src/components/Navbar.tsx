@@ -81,39 +81,39 @@ export default function Navbar() {
 
 	const Sidebar = () => (
 		<BsNavbar.Collapse id="sidebar-nav" in={showSidebar}>
-			<div className="navbar-overlay" onClick={() => setShowSidebar(false)}>
-				<div className="mr-auto sidebar d-flex flex-column px-2 py-4 text-white font-semibold gap-3" onClick={(e) => e.stopPropagation()}>
-                    {/* Language control */}
-                    <button className="d-flex align-items-center gap-2 text-white font-semibold" onClick={ openLanguageModal }>
-                        <img src={ usFlag } alt="Flag of United States of America" width={25} height={25} style={{ border: "2px solid white", borderRadius: "9999px"}} />
-                        English (US)
-                    </button>
+            {/* sidebar backdrop */}
+			<div className="navbar-overlay d-lg-none" onClick={() => setShowSidebar(false)} />
+            <div className="mr-auto sidebar d-flex flex-column px-2 py-4 text-white font-semibold gap-3" onClick={(e) => e.stopPropagation()}>
+                {/* Language control */}
+                <button className="d-flex align-items-center gap-2 text-white font-semibold" onClick={ openLanguageModal }>
+                    <img src={ usFlag } alt="Flag of United States of America" width={25} height={25} style={{ border: "2px solid white", borderRadius: "9999px"}} />
+                    English (US)
+                </button>
 
-                    {/* Currency control */}
-                    <div className="d-flex align-items-center">
-                        IDR Indonesian Rupiah
+                {/* Currency control */}
+                <div className="d-flex align-items-center">
+                    IDR Indonesian Rupiah
+                </div>
+
+                {/* Master Data Management */}
+                <div className="d-flex flex-column">
+                    <div className="d-flex align-items-center pl-3 pr-1 py-1" style={{ backgroundColor: '#FDC300' }}>
+                        <i className="bi bi-briefcase-fill" />
+                        <span className="px-2">Master Data Management</span>
+                        <i className="bi bi-chevron-right" />
                     </div>
-
-                    {/* Master Data Management */}
-                    <div className="d-flex flex-column">
-                        <div className="d-flex align-items-center pl-3 pr-1 py-1" style={{ backgroundColor: '#FDC300' }}>
-                            <i className="bi bi-briefcase-fill" />
-                            <span className="px-2">Master Data Management</span>
-                            <i className="bi bi-chevron-right" />
-                        </div>
-                        <div className="d-flex flex-column pl-7 font-normal gap-2 mt-2">
-                            {
-                                ['Standard Mark-Up', 'Standard Service Fee', 'Fee Type', 'Frequent Traveler Program', 'Standard Ancillary Fee', 'Rating Type', 'Setup Flight Commision', 'Special Dates', 'Corporate Rating']
-                                .map((item, i) => (
-                                    <nav key={i} onClick={() => setShowSidebar(false)}>
-                                            { item === "Fee Type" ? <span style={{ color: '#FDC300' }}>Fee Type</span> : <span>{ item }</span> }
-                                        </nav>
-                                    ))
-                            }
-                        </div>
+                    <div className="d-flex flex-column pl-7 font-normal gap-2 mt-2">
+                        {
+                            ['Standard Mark-Up', 'Standard Service Fee', 'Fee Type', 'Frequent Traveler Program', 'Standard Ancillary Fee', 'Rating Type', 'Setup Flight Commision', 'Special Dates', 'Corporate Rating']
+                            .map((item, i) => (
+                                <nav key={i} onClick={() => setShowSidebar(false)}>
+                                        { item === "Fee Type" ? <span style={{ color: '#FDC300' }}>Fee Type</span> : <span>{ item }</span> }
+                                    </nav>
+                                ))
+                        }
                     </div>
                 </div>
-			</div>
+            </div>
 		</BsNavbar.Collapse>
 	);
 

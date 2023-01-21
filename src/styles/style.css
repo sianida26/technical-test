@@ -57,7 +57,7 @@ button {
     top:0;
     right:0;
     height: 100vh;
-    width: 100vh;
+    width: 100vw;
     z-index: 30;
     background-color: rgba(0,0,0,0.75);
 }
@@ -95,6 +95,7 @@ button {
     height: 100%;
     left:0;
     top:0;
+    z-index: 31;
     background-color: rgba(2, 127, 112, 0.85);
 }
 
