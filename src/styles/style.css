@@ -1,0 +1,33 @@
+body{
+    font-family: 'Segoe UI', sans-serif;
+}
+button {
+    background-color: transparent;
+    border-width: 0;
+    border-color: transparent;
+}
+
+.align-self-start{
+    align-self: flex-start;
+}
+
+.notification-bubble{
+    position: absolute;
+    border-radius: 90px;
+    background-color: red;
+    width: 0.4rem;
+    height: 0.4rem;
+    right: 0.09rem;
+    top: 0.15rem;
+}
+
+.profile-picture-wrapper{
+    border-radius: 999px;
+    border: 1px solid #DADADA;
+    padding: 3px;
+}
+
+.text-xs {
+    font-size: 0.75rem; /* 12px */
+    line-height: 1rem; /* 16px */
+}
