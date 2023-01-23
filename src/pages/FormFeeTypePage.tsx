@@ -1,28 +1,25 @@
-import { useState, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Card, Dropdown, Form, Button } from "react-bootstrap";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
+import FeeType, { Language } from "../interfaces/FeeType";
+import { useAppSelector } from "../redux/hooks";
 
-enum Language {
-	"id" = "id",
-	"en" = "en",
-	"chn" = "chn",
+interface Props{
+	isEdit: boolean
 }
 
-interface FormType {
-	code: string;
-	translations: {
-		[language in Language]: {
-			name: string;
-			description: string;
-		};
-	};
-}
-
-export default function CreateFeeTypePage() {
+export default function CreateFeeTypePage({ isEdit }: Props) {
 	const navigate = useNavigate();
+    const editData = useAppSelector(state => state);
+
+	useEffect(() => {
+		//Redirect to index if no edit data
+		if (!isEdit) return;
+		if (!editData.code) return navigate("/", { replace: true })
+	}, [])
 
 	const [currentLanguage, setCurrentLanguage] = useState<Language>(
 		Language.id
@@ -51,7 +48,7 @@ export default function CreateFeeTypePage() {
 		}),
 	});
 
-	const initialValues: FormType = {
+	const initialValues: FeeType = {
 		code: "",
 		translations: {
 			id: { name: "", description: "" },
@@ -60,7 +57,7 @@ export default function CreateFeeTypePage() {
 		},
 	};
 
-	const handleSubmit = (formData: FormType) => {
+	const handleSubmit = (formData: FeeType) => {
 		toast.success(
 			`Record '${formData.translations.en.name}' has been successfully saved.`
 		);
@@ -68,7 +65,7 @@ export default function CreateFeeTypePage() {
 	};
 
 	const formik = useFormik({
-		initialValues,
+		initialValues: isEdit ? editData : initialValues,
 		validationSchema,
 		onSubmit: handleSubmit,
 	});
@@ -76,7 +73,7 @@ export default function CreateFeeTypePage() {
 	return (
 		<main>
 			<Form noValidate onSubmit={formik.handleSubmit}>
-				<h2>Create Fee Type</h2>
+				<h2>{ isEdit ? "Edit" : "Create" } Fee Type</h2>
 
 				<Card className="shadow p-3">
 					<div className="d-flex flex-column gap-2">

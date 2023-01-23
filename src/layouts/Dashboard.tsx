@@ -23,6 +23,7 @@ export default function Dashboard() {
                             <Breadcrumb.Item active>
                                 {
                                     location.pathname === "/create" ? "Create Fee Type"
+                                    : location.pathname === "/edit" ? "Edit Fee Type"
                                     : ""
                                 }
                             </Breadcrumb.Item>
