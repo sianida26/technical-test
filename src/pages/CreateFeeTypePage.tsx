@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Card, Dropdown, Form, Button } from "react-bootstrap";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
@@ -222,7 +222,7 @@ export default function CreateFeeTypePage() {
 											currentLanguage === Language.id &&
 											"active"
 										}`}
-                                        type="button"
+										type="button"
 										onClick={() =>
 											setCurrentLanguage(Language.id)
 										}
@@ -238,7 +238,7 @@ export default function CreateFeeTypePage() {
 											currentLanguage === Language.chn &&
 											"active"
 										}`}
-                                        type="button"
+										type="button"
 										onClick={() =>
 											setCurrentLanguage(Language.chn)
 										}
@@ -302,7 +302,9 @@ export default function CreateFeeTypePage() {
 					<Button variant="success" className="px-4" type="submit">
 						Save
 					</Button>
-					<Button variant="outline-dark">Cancel</Button>
+					<Link to="/">
+						<Button variant="outline-dark">Cancel</Button>
+					</Link>
 				</div>
 			</Form>
 		</main>
