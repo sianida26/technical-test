@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
 import $ from "jquery";
 import "datatables.net";
@@ -150,7 +151,7 @@ export default function TypeFeePage() {
 	}
 
 	const handleSearchInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-		
+		// const value = event.target.value
 		setSearchKeyword(event.target.value)
 	};
 
@@ -207,10 +208,12 @@ export default function TypeFeePage() {
 					<span className="btn-table-action">
 						<i className="bi bi-printer"></i>
 					</span>
-					<Button variant="warning" className="font-medium">
-						<i className="bi bi-file-earmark-plus" />
-						&nbsp;&nbsp;Create New
-					</Button>
+					<Link to="/create">
+						<Button variant="warning" className="font-medium">
+							<i className="bi bi-file-earmark-plus" />
+							&nbsp;&nbsp;Create New
+						</Button>
+					</Link>
 				</div>
 
 				<div className="d-flex flex-column flex-md-row gap-2">
@@ -221,6 +224,7 @@ export default function TypeFeePage() {
 							className="form-control search-input rounded-8"
 							placeholder="Search"
 							value={ searchKeyword }
+							maxLength={ 256 }
 							onChange={handleSearchInput}
 						/>
 						<div className="position-absolute search-icon">

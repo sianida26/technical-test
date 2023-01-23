@@ -44,6 +44,15 @@ table#main-table thead th:last-child {
     outline: none !important;
 }
 
+.breadcrumb-item a {
+    color: #818181;
+    text-decoration: none;
+}
+
+.breadcrumb-item.active {
+    color: #E84D0E;
+}
+
 .btn-table-action{
     padding: 8px;
     width: 2.5rem;
@@ -113,6 +122,10 @@ table#main-table thead th:last-child {
     width: 100vw;
     z-index: 30;
     background-color: rgba(0,0,0,0.75);
+}
+
+.no-underline{
+    text-decoration-line: none !important;
 }
 
 .notification-bubble{
