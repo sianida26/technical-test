@@ -261,6 +261,7 @@ export default function CreateFeeTypePage() {
 											className=""
 											name={`translations.${currentLanguage}.name`}
 											id="code"
+                                            maxLength={ 256 }
 											onChange={formik.handleChange}
 											value={
 												formik.values.translations[
@@ -277,6 +278,7 @@ export default function CreateFeeTypePage() {
 											as="textarea"
 											name={`translations.${currentLanguage}.description`}
 											id="code"
+                                            maxLength={ 4000 }
 											onChange={formik.handleChange}
 											value={
 												formik.values.translations[
