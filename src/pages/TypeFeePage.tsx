@@ -55,7 +55,7 @@ export default function TypeFeePage() {
 					{
 						title: "",
 						orderable: false,
-						className: "reorder all",
+						className: "reorder all w-8",
 						data: null,
 						defaultContent: '<i class="bi bi-grip-vertical"></i>',
 						//   width: "10px"
@@ -63,10 +63,10 @@ export default function TypeFeePage() {
 					{
 						title: "",
 						orderable: false,
-						className: "select-checkbox all",
+						className: "select-checkbox all w-8",
 						data: null,
 						defaultContent: "",
-						width: "1 rem",
+						// width: "1 rem",
 					},
 					{
 						title: "Fee Type Code",
@@ -81,7 +81,7 @@ export default function TypeFeePage() {
 					{
 						title: "Description",
 						data: 2,
-						className: "min-tablet",
+						className: "min-tablet whitespace-normal",
 					},
 					{
 						title: "Status",
@@ -199,7 +199,7 @@ export default function TypeFeePage() {
 	return (
 		<main>
 			<h2>Fee Type</h2>
-			<div className="d-flex flex-column justify-content-between gap-2">
+			<div className="d-flex flex-column flex-md-row-reverse justify-content-between gap-2">
 				<div className="d-flex justify-content-end gap-2">
 					<span className="btn-table-action">
 						<i className="bi bi-download"></i>
@@ -213,7 +213,7 @@ export default function TypeFeePage() {
 					</Button>
 				</div>
 
-				<div className="d-flex flex-column gap-2">
+				<div className="d-flex flex-column flex-md-row gap-2">
 					{/* search */}
 					<div className="input-group position-relative">
 						<input
@@ -229,8 +229,8 @@ export default function TypeFeePage() {
 					</div>
 
 					{/* advanced options */}
-					<div className="align-self-end font-bold">
-						<span>Advanced Options</span>
+					<div className="align-self-end font-bold d-md-flex align-items-md-center align-self-md-stretch">
+						<span className="whitespace-md-nowrap">Advanced Options</span>
 						&nbsp;&nbsp;
 						<div
 							className={`d-inline-flex transition ${

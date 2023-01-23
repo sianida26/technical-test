@@ -214,6 +214,14 @@ table#main-table thead th:first-child {
     white-space: normal !important;
 }
 
+.w-4{
+    width: 1rem !important;
+}
+
+.w-8{
+    width: 2rem !important;
+}
+
 .w-min {
     width: min-content !important;
 }
@@ -224,9 +232,17 @@ table#main-table thead th:first-child {
     }
 }
 
-@media (min-width: 481px) and (max-width: 1024) {
+@media (max-width: 1024px) {
     table#main-table thead th:nth-child(6) {
         border-top-right-radius:10px;
+    }
+}
+
+
+/* md breakpoint */
+@media (min-width: 768px) { 
+    .whitespace-md-nowrap{
+        white-space: nowrap !important;
     }
 }
 
