@@ -18,6 +18,10 @@ table#main-table thead th:first-child {
     border-top-left-radius:10px;
 }
 
+table#main-table thead th:last-child {
+    border-top-right-radius:10px;
+}
+
 .advanced-options{
     background: #F5F7F9 0% 0% no-repeat padding-box;
     border: 1px solid #C7CDD6D9;

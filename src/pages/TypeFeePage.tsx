@@ -273,7 +273,7 @@ export default function TypeFeePage() {
 					</Form.Select>
 				</div>
 			</Collapse>
-			<div style={{ overflowX: "scroll" }}>
+			<div id="main-table-container">
 				<table
 					id="main-table"
 					className="display responsive nowrap"
@@ -281,39 +281,41 @@ export default function TypeFeePage() {
 					ref={tableRef}
 				></table>
 			</div>
-			<div className="d-flex gap-2 text-sm align-items-center">
-				<Form.Select className="form-control d-inline w-min form-control-sm" onChange={(e) => handlePageLengthChange(+e.target.value) }>
-					<option value="10">10</option>
-					<option value="25">25</option>
-					<option value="50">50</option>
-					<option value="100">100</option>
-				</Form.Select>
-				{
-					tableReady && <span>Showing { getTableInfo()!.start + 1 } - { getTableInfo()!.end } of { getTableInfo()!.recordsDisplay }</span>
-				}
-			</div>
-			<div className="d-flex text-sm align-items-center mt-4 gap-2">
-				<span className="font-semibold d-inline">Page:</span>
-				{
-					(() => {
-						if (!tableReady) return;
-						const tableInfo = getTableInfo()!
-						const pageNumbers = getPageNumbers()
-						return <Pagination>
-							<Pagination.Prev disabled={ pageNumbers[0] === 1 } onClick={ () => handlePageChange(tableInfo.page) } />
-							{
-								pageNumbers[0] > 1 && <Pagination.Ellipsis />
-							}
-							{
-								pageNumbers.map(x => <Pagination.Item key={ x } active={ tableInfo.page + 1 === x } onClick={ () => handlePageChange(x) } >{ x }</Pagination.Item>)	
-							}
-							{
-								pageNumbers[pageNumbers.length-1] !== tableInfo.pages && <Pagination.Ellipsis />
-							}
-							<Pagination.Next disabled={ tableInfo.pages === tableInfo.page } onClick={ () => handlePageChange(tableInfo.page + 2) } />
-						</Pagination>
-					})()
-				}
+			<div className="d-flex flex-column flex-md-row justify-content-md-between">
+				<div className="d-flex gap-2 text-sm align-items-center">
+					<Form.Select className="form-control d-inline w-min form-control-sm" onChange={(e) => handlePageLengthChange(+e.target.value) }>
+						<option value="10">10</option>
+						<option value="25">25</option>
+						<option value="50">50</option>
+						<option value="100">100</option>
+					</Form.Select>
+					{
+						tableReady && <span>Showing { getTableInfo()!.start + 1 } - { getTableInfo()!.end } of { getTableInfo()!.recordsDisplay }</span>
+					}
+				</div>
+				<div className="d-flex text-sm align-items-center mt-4 gap-2">
+					<span className="font-semibold d-inline">Page:</span>
+					{
+						(() => {
+							if (!tableReady) return;
+							const tableInfo = getTableInfo()!
+							const pageNumbers = getPageNumbers()
+							return <Pagination>
+								<Pagination.Prev disabled={ pageNumbers[0] === 1 } onClick={ () => handlePageChange(tableInfo.page) } />
+								{
+									pageNumbers[0] > 1 && <Pagination.Ellipsis />
+								}
+								{
+									pageNumbers.map(x => <Pagination.Item key={ x } active={ tableInfo.page + 1 === x } onClick={ () => handlePageChange(x) } >{ x }</Pagination.Item>)	
+								}
+								{
+									pageNumbers[pageNumbers.length-1] !== tableInfo.pages && <Pagination.Ellipsis />
+								}
+								<Pagination.Next disabled={ tableInfo.pages === tableInfo.page } onClick={ () => handlePageChange(tableInfo.page + 2) } />
+							</Pagination>
+						})()
+					}
+				</div>
 			</div>
 		</main>
 	);
