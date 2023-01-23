@@ -15,6 +15,7 @@ export default function Dashboard() {
                 </Breadcrumb>
 			    <Outlet />
             </Container>
+            <p className="text-center text-xs mt-4" style={{ color: '#818181' }}>© 2020 Bayu Buana Travel Services. All Rights Reserved.</p>
 		</div>
 	);
 }

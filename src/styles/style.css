@@ -7,6 +7,27 @@ button {
     border-color: transparent;
 }
 
+
+table#main-table thead th {
+    background-color: #5E5E5E;
+    color: white;
+    border:0;
+}
+
+table#main-table thead th:first-child {
+    border-top-left-radius:10px;
+}
+
+.advanced-options{
+    background: #F5F7F9 0% 0% no-repeat padding-box;
+    border: 1px solid #C7CDD6D9;
+    border-radius: 8px;
+    display: "flex";
+    flex-direction: "column";
+    margin-top: 0.5rem;
+    padding: 1rem;
+}
+
 .align-self-start{
     align-self: flex-start;
 }
@@ -19,17 +40,45 @@ button {
     outline: none !important;
 }
 
+.btn-table-action{
+    padding: 8px;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #5E5E5E;
+    border-radius: 999px;
+    color: white;
+}
+
 .flag-round {
     border-radius: 9999px;
     object-fit: cover;
+}
+
+.float-left {
+    float: 'left' !important;
+}
+
+.float-right {
+    float: 'right' !important;
 }
 
 .font-normal{
     font-weight: 400 !important;
 }
 
+.font-medium{
+    font-weight: 500 !important;
+}
+
 .font-semibold{
     font-weight: 600 !important;
+}
+
+.font-bold{
+    font-weight: 700 !important;
 }
 
 .gap-2{
@@ -94,8 +143,39 @@ button {
     padding: 3px;
 }
 
+.rotate-180{
+    transform: rotate(180deg);
+}
+
+.rounded-8{
+    border-radius: 8px !important;
+}
+
+.text-3E40AE{
+    color: #3E40AE !important;
+}
+
+.text-sm{
+    font-size: 0.875rem; /* 14px */
+    line-height: 1.25rem; /* 20px */
+}
+
 .text-white{
     color: #FFF !important;
+}
+
+.transition{
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
+
+.search-icon{
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    color: rgb(116, 119, 122);
+    transform: translateY(-50%);
 }
 
 .side-panel{
@@ -128,6 +208,26 @@ button {
 .text-xl {
     font-size: 1.25rem; /* 20px */
     line-height: 1.75rem; /* 28px */
+}
+
+.whitespace-normal {
+    white-space: normal !important;
+}
+
+.w-min {
+    width: min-content !important;
+}
+
+@media (max-width: 480px){
+    table#main-table thead th:nth-child(4) {
+        border-top-right-radius:10px;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 1024) {
+    table#main-table thead th:nth-child(6) {
+        border-top-right-radius:10px;
+    }
 }
 
 /* lg breakpoint */

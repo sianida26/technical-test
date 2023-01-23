@@ -1,4 +1,10 @@
 
 $breadcrumb-divider: quote(">");
+$brown: #5E5E5E;
+
+$pagination-active-bg: $brown;
+$pagination-color: $brown;
+$pagination-hover-color: $brown;
+$pagination-focus-color: $brown;
 
 @import "bootstrap/scss/bootstrap";
