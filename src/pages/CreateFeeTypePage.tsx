@@ -60,10 +60,12 @@ export default function CreateFeeTypePage() {
 		},
 	};
 
-    const handleSubmit = (formData: FormType) => {
-        toast.success(`Record '${formData.translations.en.name}' has been successfully saved.`)
-        navigate('/')
-    }
+	const handleSubmit = (formData: FormType) => {
+		toast.success(
+			`Record '${formData.translations.en.name}' has been successfully saved.`
+		);
+		navigate("/");
+	};
 
 	const formik = useFormik({
 		initialValues,
@@ -78,81 +80,99 @@ export default function CreateFeeTypePage() {
 
 				<Card className="shadow p-3">
 					<div className="d-flex flex-column gap-2">
-						{/* type code */}
-						<div className="bg-F3F4F4 rounded p-2">
-							<Form.Group>
-								<p>
-									<strong>For Interface Purpose</strong>
-								</p>
-								<Form.Label>
-									Fee Type Code
-									<span className="text-danger">*</span>
-									<i
-										className="bi bi-info-circle position-relative"
-										style={{ bottom: "5px" }}
+						<div className="d-flex flex-column gap-2 gap-md-4 flex-md-row-reverse">
+							{/* type code */}
+							<div className="bg-F3F4F4 rounded p-2">
+								<Form.Group>
+									<p>
+										<strong>For Interface Purpose</strong>
+									</p>
+									<div className="d-flex flex-column flex-md-row gap-md-2">
+										<Form.Label className="whitespace-none flex-nowrap">
+											Fee Type Code
+											<span className="text-danger">
+												*
+											</span>
+											<i
+												className="bi bi-info-circle position-relative"
+												style={{ bottom: "5px" }}
+											/>
+										</Form.Label>
+										<div className="d-flex flex-column">
+											<Form.Control
+												type="text"
+												className="w-50 w-md-100"
+												minLength={1}
+												maxLength={36}
+												name="code"
+												id="code"
+												isInvalid={!!formik.errors.code}
+												onChange={formik.handleChange}
+												value={formik.values.code}
+											/>
+											<Form.Control.Feedback type="invalid">
+												{formik.errors.code}
+											</Form.Control.Feedback>
+										</div>
+									</div>
+								</Form.Group>
+							</div>
+
+							<div className="d-flex flex-column gap-2 flex-md-grow-1">
+								<Form.Group className="d-flex flex-column flex-md-row gap-md-2">
+									<Form.Label className="w-md-30">
+										Fee Type Name
+										<span className="text-danger">*</span>
+									</Form.Label>
+									<div className="w-md-100">
+										<Form.Control
+											type="text"
+											name="translations.en.name"
+											id="code"
+											maxLength={256}
+											onChange={formik.handleChange}
+											isInvalid={
+												!!formik.errors.translations?.en
+													?.name
+											}
+											value={
+												formik.values.translations.en
+													.name
+											}
+										/>
+										<Form.Control.Feedback type="invalid">
+											{
+												formik.errors.translations?.en
+													?.name
+											}
+										</Form.Control.Feedback>
+									</div>
+								</Form.Group>
+								<Form.Group className="d-flex flex-column flex-md-row gap-md-2">
+									<Form.Label className="w-md-30">
+										Description
+									</Form.Label>
+									<Form.Control
+										type="text"
+										className="w-md-100"
+										as="textarea"
+										name="translations.en.description"
+										id="code"
+										maxLength={4000}
+										onChange={formik.handleChange}
+										value={
+											formik.values.translations.en
+												.description
+										}
 									/>
-								</Form.Label>
-								<Form.Control
-									type="text"
-									className="w-50"
-									minLength={1}
-									maxLength={36}
-									name="code"
-									id="code"
-									isInvalid={!!formik.errors.code}
-									onChange={formik.handleChange}
-									value={formik.values.code}
-								/>
-								<Form.Control.Feedback type="invalid">
-									{formik.errors.code}
-								</Form.Control.Feedback>
-							</Form.Group>
+								</Form.Group>
+							</div>
 						</div>
 
-						<div className="d-flex flex-column gap-2">
-							<Form.Group>
-								<Form.Label>
-									Fee Type Name
-									<span className="text-danger">*</span>
-								</Form.Label>
-								<Form.Control
-									type="text"
-									className=""
-									name="translations.en.name"
-									id="code"
-									maxLength={256}
-									onChange={formik.handleChange}
-									isInvalid={
-										!!formik.errors.translations?.en?.name
-									}
-									value={formik.values.translations.en.name}
-								/>
-								<Form.Control.Feedback type="invalid">
-									{formik.errors.translations?.en?.name}
-								</Form.Control.Feedback>
-							</Form.Group>
-							<Form.Group>
-								<Form.Label>Description</Form.Label>
-								<Form.Control
-									type="text"
-									className=""
-									as="textarea"
-									name="translations.en.description"
-									id="code"
-									maxLength={4000}
-									onChange={formik.handleChange}
-									value={
-										formik.values.translations.en
-											.description
-									}
-								/>
-							</Form.Group>
-						</div>
-
-						<div className="mt-4 border-bottom">
-							<h4>Translation</h4>
-							<div className="mt-4">
-								<Dropdown>
+						<div className="mt-4">
+							<h4 className="border-bottom">Translation</h4>
+							<div className="mt-4 d-flex flex-column flex-md-row">
+								<Dropdown className="d-md-none">
 									<Dropdown.Toggle
 										id="dropdown-translation-sm"
 										className="shadow"
@@ -166,7 +186,7 @@ export default function CreateFeeTypePage() {
 													currentLanguage
 												] && (
 													<i className="bi bi-exclamation-triangle-fill text-danger text-xl" />
-                                            )}
+												)}
 										</div>
 									</Dropdown.Toggle>
 									<Dropdown.Menu>
@@ -176,10 +196,11 @@ export default function CreateFeeTypePage() {
 											}
 										>
 											Indonesia&nbsp;
-                                            {formik.touched &&
-												formik.errors.translations?.id && (
+											{formik.touched &&
+												formik.errors.translations
+													?.id && (
 													<i className="bi bi-exclamation-triangle-fill text-danger text-xl" />
-                                            )}
+												)}
 										</Dropdown.Item>
 										<Dropdown.Item
 											onClick={() =>
@@ -187,15 +208,50 @@ export default function CreateFeeTypePage() {
 											}
 										>
 											Chinese Simplified&nbsp;
-                                            {formik.touched &&
-												formik.errors.translations?.chn && (
+											{formik.touched &&
+												formik.errors.translations
+													?.chn && (
 													<i className="bi bi-exclamation-triangle-fill text-danger text-xl" />
-                                            )}
+												)}
 										</Dropdown.Item>
 									</Dropdown.Menu>
 								</Dropdown>
+								<div id="translation-tab-container">
+									<button
+										className={`translation-tab-item ${
+											currentLanguage === Language.id &&
+											"active"
+										}`}
+                                        type="button"
+										onClick={() =>
+											setCurrentLanguage(Language.id)
+										}
+									>
+										Indonesia&nbsp;
+										{formik.touched &&
+											formik.errors.translations?.id && (
+												<i className="bi bi-exclamation-triangle-fill text-danger text-xl" />
+											)}
+									</button>
+									<button
+										className={`translation-tab-item ${
+											currentLanguage === Language.chn &&
+											"active"
+										}`}
+                                        type="button"
+										onClick={() =>
+											setCurrentLanguage(Language.chn)
+										}
+									>
+										Chinese Simplified &nbsp;
+										{formik.touched &&
+											formik.errors.translations?.chn && (
+												<i className="bi bi-exclamation-triangle-fill text-danger text-xl" />
+											)}
+									</button>
+								</div>
 								<Card
-									className="shadow p-4 d-flex flex-column gap-2"
+									className="shadow p-4 d-flex flex-column gap-2 flex-md-grow-1"
 									id="card-translation"
 								>
 									<Form.Group>
