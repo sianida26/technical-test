@@ -10,8 +10,9 @@ function App() {
     <Routes>
       <Route path="/" element={<Dashboard />}>
         <Route index element={<TypeFeePage />} />
-        <Route path="/create" element={<FormFeeTypePage isEdit={ false } />} />
-        <Route path="/edit" element={<FormFeeTypePage isEdit={ true } />} />
+        <Route path="/create" element={<FormFeeTypePage action="create" />} />
+        <Route path="/edit" element={<FormFeeTypePage action="edit" />} />
+        <Route path="/details" element={<FormFeeTypePage action="view" />} />
       </Route>
     </Routes>
   )

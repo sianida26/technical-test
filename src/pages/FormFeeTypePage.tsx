@@ -6,20 +6,21 @@ import { toast } from "react-toastify";
 import * as Yup from "yup";
 import FeeType, { Language } from "../interfaces/FeeType";
 import { useAppSelector } from "../redux/hooks";
+import { createFeeType, editFeeType } from "../services/feeTypeService";
 
-interface Props{
-	isEdit: boolean
+interface Props {
+	action: "edit" | "create" | "view";
 }
 
-export default function CreateFeeTypePage({ isEdit }: Props) {
+export default function CreateFeeTypePage({ action }: Props) {
 	const navigate = useNavigate();
-    const editData = useAppSelector(state => state);
+	const editData = useAppSelector((state) => state);
 
 	useEffect(() => {
 		//Redirect to index if no edit data
-		if (!isEdit) return;
-		if (!editData.code) return navigate("/", { replace: true })
-	}, [])
+		if (action === "create") return;
+		if (!editData.code) return navigate("/", { replace: true });
+	}, []);
 
 	const [currentLanguage, setCurrentLanguage] = useState<Language>(
 		Language.id
@@ -58,6 +59,12 @@ export default function CreateFeeTypePage({ isEdit }: Props) {
 	};
 
 	const handleSubmit = (formData: FeeType) => {
+		if (action === "create"){
+			createFeeType(formData)
+		}
+		else if (action === "edit"){
+			editFeeType(formData)
+		}
 		toast.success(
 			`Record '${formData.translations.en.name}' has been successfully saved.`
 		);
@@ -65,7 +72,7 @@ export default function CreateFeeTypePage({ isEdit }: Props) {
 	};
 
 	const formik = useFormik({
-		initialValues: isEdit ? editData : initialValues,
+		initialValues: action === "create" ? initialValues : editData,
 		validationSchema,
 		onSubmit: handleSubmit,
 	});
@@ -73,7 +80,13 @@ export default function CreateFeeTypePage({ isEdit }: Props) {
 	return (
 		<main>
 			<Form noValidate onSubmit={formik.handleSubmit}>
-				<h2>{ isEdit ? "Edit" : "Create" } Fee Type</h2>
+				<h2>
+					{action === "view"
+						? "Fee Type Details"
+						: action === "edit"
+						? "Edit Fee Type"
+						: "Create Fee Type"}
+				</h2>
 
 				<Card className="shadow p-3">
 					<div className="d-flex flex-column gap-2">
@@ -87,9 +100,11 @@ export default function CreateFeeTypePage({ isEdit }: Props) {
 									<div className="d-flex flex-column flex-md-row gap-md-2">
 										<Form.Label className="whitespace-none flex-nowrap">
 											Fee Type Code
-											<span className="text-danger">
-												*
-											</span>
+											{action !== "view" && (
+												<span className="text-danger">
+													*
+												</span>
+											)}
 											<i
 												className="bi bi-info-circle position-relative"
 												style={{ bottom: "5px" }}
@@ -104,6 +119,7 @@ export default function CreateFeeTypePage({ isEdit }: Props) {
 												name="code"
 												id="code"
 												isInvalid={!!formik.errors.code}
+												readOnly={action === "view"}
 												onChange={formik.handleChange}
 												value={formik.values.code}
 											/>
@@ -119,7 +135,11 @@ export default function CreateFeeTypePage({ isEdit }: Props) {
 								<Form.Group className="d-flex flex-column flex-md-row gap-md-2">
 									<Form.Label className="w-md-30">
 										Fee Type Name
-										<span className="text-danger">*</span>
+										{action !== "view" && (
+											<span className="text-danger">
+												*
+											</span>
+										)}
 									</Form.Label>
 									<div className="w-md-100">
 										<Form.Control
@@ -128,6 +148,7 @@ export default function CreateFeeTypePage({ isEdit }: Props) {
 											id="code"
 											maxLength={256}
 											onChange={formik.handleChange}
+											readOnly={action === "view"}
 											isInvalid={
 												!!formik.errors.translations?.en
 													?.name
@@ -154,6 +175,7 @@ export default function CreateFeeTypePage({ isEdit }: Props) {
 										className="w-md-100"
 										as="textarea"
 										name="translations.en.description"
+										readOnly={action === "view"}
 										id="code"
 										maxLength={4000}
 										onChange={formik.handleChange}
@@ -256,9 +278,10 @@ export default function CreateFeeTypePage({ isEdit }: Props) {
 										<Form.Control
 											type="text"
 											className=""
+											readOnly={action === "view"}
 											name={`translations.${currentLanguage}.name`}
 											id="code"
-                                            maxLength={ 256 }
+											maxLength={256}
 											onChange={formik.handleChange}
 											value={
 												formik.values.translations[
@@ -272,10 +295,11 @@ export default function CreateFeeTypePage({ isEdit }: Props) {
 										<Form.Control
 											type="text"
 											className=""
+											readOnly={action === "view"}
 											as="textarea"
 											name={`translations.${currentLanguage}.description`}
 											id="code"
-                                            maxLength={ 4000 }
+											maxLength={4000}
 											onChange={formik.handleChange}
 											value={
 												formik.values.translations[
@@ -298,12 +322,27 @@ export default function CreateFeeTypePage({ isEdit }: Props) {
 				</Card>
 
 				<div className="d-flex mt-4 justify-content-center gap-4">
-					<Button variant="success" className="px-4" type="submit">
-						Save
-					</Button>
-					<Link to="/">
-						<Button variant="outline-dark">Cancel</Button>
-					</Link>
+					{action === "view" ? (
+						<Button
+							onClick={() => navigate(-1)}
+							variant="outline-dark"
+						>
+							Back
+						</Button>
+					) : (
+						<>
+							<Button
+								variant="success"
+								className="px-4"
+								type="submit"
+							>
+								Save
+							</Button>
+							<Link to="/">
+								<Button variant="outline-dark">Cancel</Button>
+							</Link>
+						</>
+					)}
 				</div>
 			</Form>
 		</main>

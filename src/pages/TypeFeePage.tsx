@@ -46,10 +46,16 @@ export default function TypeFeePage() {
 		navigate('/edit')
 	};
 
+	const handleDetailsClick = (data: FeeType) => {
+		dispatch(setData(data))
+		navigate('/details')
+	};
+
 	useEffect(() => {
 		if (tableRef.current) {
 			const tableInstance = $(tableRef.current).DataTable({
-				data,
+				data: getFeeTypes(),
+				//@ts-ignore
 				rowReorder: true,
 				pageLength: 10,
 				responsive: {
@@ -123,6 +129,7 @@ export default function TypeFeePage() {
 
 							const eyeIcon = document.createElement("i");
 							eyeIcon.classList.add("bi", "bi-eye");
+							eyeIcon.onclick = () => handleDetailsClick(rowData as FeeType)
 
 							const trashIcon = document.createElement("i");
 							trashIcon.classList.add("bi", "bi-trash");
